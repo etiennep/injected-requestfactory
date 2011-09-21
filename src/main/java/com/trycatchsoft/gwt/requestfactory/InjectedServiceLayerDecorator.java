@@ -15,12 +15,11 @@
  */
 package com.trycatchsoft.gwt.requestfactory;
 
-import java.lang.reflect.Method;
-
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.web.bindery.requestfactory.server.ServiceLayerDecorator;
 import com.google.web.bindery.requestfactory.shared.Locator;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.ServiceLocator;
 
 /**
@@ -45,18 +44,18 @@ public class InjectedServiceLayerDecorator extends ServiceLayerDecorator {
   public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
     return injector.getInstance(clazz);
   }
-
+  
+  
+  
   @Override
-  public Object createServiceInstance(Method contextMethod, Method domainMethod) {
-    Class<? extends ServiceLocator> serviceLocatorClass;
-    if ((serviceLocatorClass = getTop().resolveServiceLocator(contextMethod, domainMethod)) != null) {
-      return injector.getInstance(serviceLocatorClass).getInstance(domainMethod.getDeclaringClass());
+  public Object createServiceInstance(Class<? extends RequestContext> requestContext) {
+    Class<? extends ServiceLocator> serviceLocatorClass;    
+    if ((serviceLocatorClass = getTop().resolveServiceLocator(requestContext)) != null) {
+      return injector.getInstance(serviceLocatorClass).getInstance(requestContext.getDeclaringClass());
     } else {
       return null;
     }
   }
-  
-  
   
   
 }
