@@ -56,49 +56,7 @@
             <version>${gwt.version}</version>
           </dependency>
         </dependencies>
-      </plugin>
-       <!-- GWT Maven Plugin-->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.3.0-1</version>
-        <dependencies>
-          <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-dev</artifactId>
-            <version>${gwt.version}</version>
-          </dependency>         
-        </dependencies>
-        <!-- JS is only needed in the package phase, this speeds up testing -->
-        <executions>
-          <execution>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
-
-        <!-- Plugin configuration. There are many available options,
-             see gwt-maven-plugin documentation at codehaus.org -->
-        <configuration>
-          <!-- URL that should be automatically opened in the GWT shell (gwt:run). -->
-          <!-- Ask GWT to create the Story of Your Compile (SOYC) (gwt:compile) -->
-          <compileReport>true</compileReport>
-          <module>com.google.gwt.sample.mobilewebapp.MobileWebApp</module>
-          <appEngineVersion>${gae.version}</appEngineVersion>
-          <appEngineHome>${gae.home}</appEngineHome>
-          <logLevel>INFO</logLevel>
-<!--           <style>${gwt.style}</style> -->
-          <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
-          <copyWebapp>true</copyWebapp>
-        </configuration>
-      </plugin>
+      </plugin>     
     </plugins>
   </build>
   <dependencies>
